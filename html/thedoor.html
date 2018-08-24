@@ -1,0 +1,318 @@
+﻿<html>
+<head>
+    <title>门禁系统</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .btn {
+            width: 100px;
+            height: 30px;
+        }
+        .container {
+            width: 500px;
+            min-height: 500px;
+            border: 1px solid darkgrey;
+            margin: 100px auto;
+            
+        }
+        .ReadUid{
+            display:flex;
+            flex-direction:column;
+        }
+        .Uid {
+            margin:0;
+            text-align:center;
+        }
+        .UidTable{
+            height:285px;
+        }
+        .btnrow{
+           text-align:right;
+        }
+        .button {
+            width: 140px;
+            line-height: 38px;
+            text-align: center;
+            font-weight: bold;
+            color: #fff;
+            text-shadow: 1px 1px 1px #333;
+            border-radius: 5px;
+            margin: 0 20px 20px 0;
+            position: relative;
+            right:0;
+            overflow: hidden;
+        }
+        .button.green {
+            border: 1px solid #64c878;
+            box-shadow: 0 1px 2px #b9ecc4 inset,0 -1px 0 #6c9f76 inset,0 -2px 3px #b9ecc4 inset;
+            background: -webkit-linear-gradient(top,#90dfa2,#84d494);
+            background: -moz-linear-gradient(top,#90dfa2,#84d494);
+            background: linear-gradient(top,#90dfa2,#84d494);
+        }
+
+        .button.blue {
+            border: 1px solid #1e7db9;
+            box-shadow: 0 1px 2px #8fcaee inset,0 -1px 0 #497897 inset,0 -2px 3px #8fcaee inset;
+            background: -webkit-linear-gradient(top,#42a4e0,#2e88c0);
+            background: -moz-linear-gradient(top,#42a4e0,#2e88c0);
+            background: linear-gradient(top,#42a4e0,#2e88c0);
+        }
+        .button.red {
+            border: 1px solid #b42323;
+            box-shadow: 0 1px 2px #e99494 inset,0 -1px 0 #954b4b inset,0 -2px 3px #e99494 inset;
+            background: -webkit-linear-gradient(top,#d53939,#b92929);
+            background: -moz-linear-gradient(top,#d53939,#b92929);
+            background: linear-gradient(top,#d53939,#b92929);
+        }
+        .red:hover {
+            background: -webkit-linear-gradient(top,#eb6f6f,#c83c3c);
+            background: -moz-linear-gradient(top,#eb6f6f,#c83c3c);
+            background: linear-gradient(top,#eb6f6f,#c83c3c);
+        }
+        .green:hover {
+            background: -webkit-linear-gradient(top,#aaebb9,#82d392);
+            background: -moz-linear-gradient(top,#aaebb9,#82d392);
+            background: linear-gradient(top,#aaebb9,#82d392);
+        }
+
+        .blue:hover {
+            background: -webkit-linear-gradient(top,#70bfef,#4097ce);
+            background: -moz-linear-gradient(top,#70bfef,#4097ce);
+            background: linear-gradient(top,#70bfef,#4097ce);
+        }
+        .green:active {
+            top: 1px;
+            box-shadow: 0 1px 3px #4d7254 inset,0 3px 0 #fff;
+            background: -webkit-linear-gradient(top,#5eac6e,#72b37e);
+            background: -moz-linear-gradient(top,#5eac6e,#72b37e);
+            background: linear-gradient(top,#5eac6e,#72b37e);
+        }
+        .blue:active {
+            top: 1px;
+            box-shadow: 0 1px 3px #114566 inset,0 3px 0 #fff;
+            background: -webkit-linear-gradient(top,#1a71a8,#1976b1);
+            background: -moz-linear-gradient(top,#1a71a8,#1976b1);
+            background: linear-gradient(top,#1a71a8,#1976b1);
+        }
+        .red:active {
+            top: 1px;
+            box-shadow: 0 1px 3px #5b0505 inset,0 3px 0 #fff;
+            background: -webkit-linear-gradient(top,#b11a1a,#bf2626);
+            background: -moz-linear-gradient(top,#b11a1a,#bf2626);
+            background: linear-gradient(top,#b11a1a,#bf2626);
+        }
+        .readBorder {
+            border: 1px dotted #ff0000;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="login"></div>
+        <div class="ReadUid">
+            <span style="text-align:center;margin-top:1px;font-size:1.2em;">允许使用的Uid</span>
+            <div class="UidTable">
+            </div>
+
+            <div class="btnrow"><button type="button" class="button green" id="1">查询允许Uid</button></div>
+            <div class="btnrow">
+                <input class="readBorder" size="5" maxlength="3" id="4"><span style="color:red">—</span><input class="readBorder" size="5" maxlength="3" id="5"><span style="color:red">—</span><input class="readBorder" size="5" maxlength="3" id="6"><span style="color:red">—</span><input class="readBorder" size="5" maxlength="3" id="7">
+                <button type="button" class="button red" id="2">删除允许Uid</button>
+            </div>
+            <div class="btnrow">
+                <input class="readBorder" size="5" maxlength="3" id="8"><span style="color:red">—</span><input class="readBorder" size="5" maxlength="3" id="9"><span style="color:red">—</span><input class="readBorder" size="5" maxlength="3" id="10"><span style="color:red">—</span><input class="readBorder" size="5" maxlength="3" id="11">
+                <button type="button" class="button blue" id="3">增加允许Uid</button>
+            </div>
+            <div class="btnrow">
+                <input class="readBorder" disabled="disabled" size="5" maxlength="3" id="12"><span style="color:red">—</span><input class="readBorder" disabled="disabled" size="5" maxlength="3" id="13"><span style="color:red">—</span><input class="readBorder" disabled="disabled" size="5" maxlength="3" id="14"><span style="color:red">—</span><input class="readBorder" disabled="disabled" size="5" maxlength="3" id="15">
+                <button type="button" class="button blue" id="16">读取当前Uid</button>
+            </div>
+        </div>
+
+
+    </div>
+    <div class="btn" id="ok" onclick="interFace()">btn</div>
+</body>
+</html>
+<script>
+    function ajaxFunction() {
+        var xmlHttp;
+        try { // Firefox, Opera 8.0+, Safari
+            xmlHttp = new XMLHttpRequest();
+        }
+        catch (e) {
+            try {// Internet Explorer
+                xmlHttp = new ActiveXObject("Msxml2.XMLHTTP");
+            }
+            catch (e) {
+                try {
+                    xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
+                }
+                catch (e) { }
+            }
+        }
+        return xmlHttp;
+    }
+    /*
+    * 1    创建XMLHttpRequest对象
+    */
+    var xhr = ajaxFunction();
+    var command;
+    var lock = 0;
+    var status = -1;
+    command = "cmd=getUidPer";
+    function interFace() {
+        /*
+            * 2    服务器向浏览器响应请求
+            *
+            * readyState 属性表示Ajax请求的当前状态。它的值用数字代表。
+                0 代表未初始化。 还没有调用 open 方法
+                1 代表正在加载。 open 方法已被调用，但 send 方法还没有被调用
+                2 代表已加载完毕。send 已被调用。请求已经开始
+                3 代表交互中。服务器正在发送响应
+                4 代表完成。响应发送完毕
+
+            常用状态码及其含义：
+                404 没找到页面(not found)
+                403 禁止访问(forbidden)
+                500 内部服务器出错(internal service error)
+                200 一切正常(ok)
+                304 没有被修改(not modified)(服务器返回304状态，表示源文件没有被修改 )
+            */
+        xhr.onreadystatechange = function () {
+            //alert(xhr.readyState);
+            //alert(xhr.status);
+            if (xhr.readyState == 4) {
+                if (xhr.status == 200 || xhr.status == 304) {
+                    var data = xhr.responseText;
+                    parser = new DOMParser();
+                    xmlDoc = parser.parseFromString(data, "text/xml");
+                    console.log(xmlDoc);
+                    
+                    
+                    var str = "";
+                    if (status == 1) {
+                        var length = xmlDoc.documentElement.childNodes.length;
+                        for (var i = 0; i < length; i++) {
+                            str += "<div class='Uid'>No.";
+                            str += i;
+                            str += "-";
+                            str += xmlDoc.getElementsByTagName("A")[i].childNodes[0].nodeValue;
+                            str += "-";
+                            str += xmlDoc.getElementsByTagName("B")[i].childNodes[0].nodeValue;
+                            str += "-";
+                            str += xmlDoc.getElementsByTagName("C")[i].childNodes[0].nodeValue;
+                            str += "-";
+                            str += xmlDoc.getElementsByTagName("D")[i].childNodes[0].nodeValue;
+                            str += "</div>";
+                        }
+                        document.getElementsByClassName("UidTable")[0].innerHTML = str;
+                    }
+                    if (status == 2) {
+                        if (xmlDoc.getElementsByTagName("A")[0].childNodes[0].nodeValue == 1) {
+                            alert("删除允许Uid成功！");
+                        }
+                        else if (xmlDoc.getElementsByTagName("A")[0].childNodes[0].nodeValue == 2) {
+                            alert("删除允许Uid失败！");
+                        }
+                    }
+                    if (status == 3) {
+                        if (xmlDoc.getElementsByTagName("A")[0].childNodes[0].nodeValue == 1) {
+                            alert("增加允许Uid成功！");
+                        }
+                        else if (xmlDoc.getElementsByTagName("A")[0].childNodes[0].nodeValue == 2) {
+                            alert("增加允许Uid失败！");
+                        }
+                    }
+                    if (status == 4) {
+                        if (xmlDoc.getElementsByTagName("A")[0].childNodes[0].nodeValue == -1) {
+                            alert("未读取到卡片！");
+                        }
+                        else {
+                            document.getElementById("12").value = xmlDoc.getElementsByTagName("A")[0].childNodes[0].nodeValue;
+                            document.getElementById("13").value = xmlDoc.getElementsByTagName("B")[0].childNodes[0].nodeValue;
+                            document.getElementById("14").value = xmlDoc.getElementsByTagName("C")[0].childNodes[0].nodeValue;
+                            document.getElementById("15").value = xmlDoc.getElementsByTagName("D")[0].childNodes[0].nodeValue;
+                        }
+                        
+                    }
+                    status = -1;
+                    lock = 0;
+                }
+            }
+        }
+
+        /*
+            * 3    浏览器与服务器建立连接
+            *
+            * xhr.open(method, url, asynch);
+            *         * 与服务器建立连接使用
+            *         * method：请求类型，类似 “GET”或”POST”的字符串。
+            *         * url：路径字符串，指向你所请求的服务器上的那个文件。请求路径
+            *         * asynch：表示请求是否要异步传输，默认值为true(异步)。
+            */
+        //xhr.open("POST", "../testServlet?timeStamp=" + new Date().getTime() + "&c=18", true);
+        xhr.open("POST", "./InterFace", true);
+        //如果是POST请求方式，设置请求首部信息
+        xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+
+        /*
+            * 4    浏览器向服务器发送请求
+            *
+            *     send()方法：
+            *         * 如果浏览器请求的类型为GET类型时，通过send()方法发送请求数据，服务器接收不到
+            *         * 如果浏览器请求的类型为POST类型时，通过send()方法发送请求数据，服务器可以接收
+            */
+        xhr.send(command);        //xhr.send(null);
+    }
+    document.getElementById("1").onclick = function () {
+        if (!lock) {
+            lock = 1;
+            status = 1;
+            command = "cmd=getUidPer";
+            interFace();
+        }
+    }
+    document.getElementById("2").onclick = function () {
+        if (!lock) {
+            lock = 1;
+            status = 2;
+            command = "cmd=deleteUid&A=";
+            command += document.getElementById("4").value;
+            command += "&B=";
+            command += document.getElementById("5").value;
+            command += "&C=";
+            command += document.getElementById("6").value;
+            command += "&D=";
+            command += document.getElementById("7").value;
+            interFace();
+        }
+    }
+    document.getElementById("3").onclick = function () {
+        if (!lock) {
+            lock = 1;
+            status = 3;
+            command = "cmd=addUid&A=";
+            command += document.getElementById("8").value;
+            command += "&B=";
+            command += document.getElementById("9").value;
+            command += "&C=";
+            command += document.getElementById("10").value;
+            command += "&D=";
+            command += document.getElementById("11").value;
+            interFace();
+        }
+    }
+    document.getElementById("16").onclick = function () {
+        if (!lock) {
+            lock = 1;
+            status = 4;
+            command = "cmd=readUid";
+            interFace();
+        }
+    }
+</script>
